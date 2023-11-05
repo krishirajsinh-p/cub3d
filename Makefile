@@ -6,14 +6,14 @@
 #    By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 18:51:03 by kpuwar            #+#    #+#              #
-#    Updated: 2023/11/05 20:56:34 by kpuwar           ###   ########.fr        #
+#    Updated: 2023/11/05 22:05:34 by kpuwar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
 #replace wildcard with file names later on
-INCLUDES = $(wildcard include/*.h)
+INCLUDES = $(wildcard includes/*.h)
 SRCS = $(wildcard src/*.c)
 OBJS = $(SRCS:.c=.o)
 
