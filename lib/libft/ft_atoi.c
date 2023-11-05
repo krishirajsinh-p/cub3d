@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 03:45:55 by kpuwar            #+#    #+#             */
-/*   Updated: 2022/11/19 12:40:03 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/05 22:07:35 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_atoi(const char *str)
 	sign = 1;
 	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\r' \
 	|| str[i] == '\t' || str[i] == '\v' || str[i] == '\f')
-			i++;
+		i++;
 	if (str[i] == '-')
 	{
 		sign = -1;
