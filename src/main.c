@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/12 22:38:39 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/12 22:53:49 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_free(t_map_data *map_data)
 {
 	static t_map_data	*map_data_ptr;
-	unsigned short		i;
+	t_ushort			i;
 
 	if (map_data_ptr == NULL)
 		map_data_ptr = map_data;
@@ -47,6 +47,8 @@ void	parser(t_string file, t_map_data *map_data)
 	get_colors(map_data);
 	check_rgb_values(map_data);
 }
+// for (size_t i = 0; map_data->raw[i]; i++)
+// 	printf("%lu\t|\t%s\n", i+1, map_data->raw[i]);
 
 int	main(int argc, char const *argv[])
 {

@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/12 21:04:38 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/12 22:53:02 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 # define NO_PLYR "Error: no player in the map\n"
 # define MULT_PLYR "Error: multiple players in the map\n"
 
+typedef unsigned short	t_ushort;
+
 enum e_key
 {
 	NO = 0,
@@ -46,11 +48,11 @@ enum e_rgb
 
 typedef struct s_map_data
 {
-	t_string		*raw;
-	t_string		texture[4];
-	unsigned short	floor[3];
-	unsigned short	ceil[3];
-	t_string		*map;
+	t_string	*raw;
+	t_string	texture[4];
+	t_ushort	floor[3];
+	t_ushort	ceil[3];
+	t_string	*map;
 }	t_map_data;
 
 //main.c
@@ -63,5 +65,8 @@ void	check_keys(t_map_data *map_data, char keys[6][3]);
 void	get_textures(t_map_data *map_data, char text_key[4][3]);
 void	get_colors(t_map_data *map_data);
 void	check_rgb_values(t_map_data *map_data);
+
+//parser2.c
+int		get_start_and_end(t_map_data *map_data);
 
 #endif

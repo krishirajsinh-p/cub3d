@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:03:05 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/12 21:03:36 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/12 22:54:29 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	get_raw(t_string file, t_map_data *map_data)
 
 void	check_keys(t_map_data *map_data, char keys[6][3])
 {
-	unsigned short	i;
-	unsigned short	j;
-	unsigned short	key_count[6];
+	t_ushort	i;
+	t_ushort	j;
+	t_ushort	key_count[6];
 
 	i = 0;
-	ft_bzero(key_count, sizeof(unsigned short) * 6);
+	ft_bzero(key_count, sizeof(t_ushort) * 6);
 	while (map_data->raw[i][0] != '1' && map_data->raw[i][0] != '0' \
 	&& map_data->raw[i][0] != ' ' && map_data->raw[i] != NULL)
 	{
@@ -67,8 +67,8 @@ void	check_keys(t_map_data *map_data, char keys[6][3])
 
 void	get_textures(t_map_data *map_data, char text_key[4][3])
 {
-	unsigned short	i;
-	unsigned short	j;
+	t_ushort	i;
+	t_ushort	j;
 	t_string		*temp_ptr;
 
 	i = 0;
@@ -92,9 +92,9 @@ void	get_textures(t_map_data *map_data, char text_key[4][3])
 
 void	get_colors(t_map_data *map_data)
 {
-	unsigned short	i;
-	unsigned short	*arr;
-	t_string		*temp_ptr[2];
+	t_ushort	i;
+	t_ushort	*arr;
+	t_string	*temp_ptr[2];
 
 	i = -1;
 	while (map_data->raw[++i][0] != '1' && map_data->raw[i][0] != '0' \
@@ -121,7 +121,7 @@ void	get_colors(t_map_data *map_data)
 
 void	check_rgb_values(t_map_data *map_data)
 {
-	unsigned short	i;
+	t_ushort	i;
 	
 	i = 0;
 	while (i < 3)
