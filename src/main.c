@@ -6,13 +6,13 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/12 20:29:14 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/12 21:05:53 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	ft_free(t_map_data *map_data)
+static void	ft_free(t_map_data *map_data)
 {
 	static t_map_data	*map_data_ptr;
 	unsigned short		i;
@@ -40,6 +40,15 @@ void	ft_error(t_string error_message)
 	exit(EXIT_FAILURE);
 }
 
+void	parser(t_string file, t_map_data *map_data)
+{
+	get_raw(file, map_data);
+	check_keys(map_data, (char [6][3]){"NO", "SO", "EA", "WE", "C ", "F "});
+	get_textures(map_data, (char [4][3]){"NO", "SO", "EA", "WE"});
+	get_colors(map_data);
+	check_rgb_values(map_data);
+}
+
 int	main(int argc, char const *argv[])
 {
 	t_map_data	map_data;
@@ -49,5 +58,6 @@ int	main(int argc, char const *argv[])
 	ft_bzero(&map_data, sizeof(t_map_data));
 	ft_free(&map_data);
 	parser((t_string)argv[1], &map_data);
+	ft_free(NULL);
 	return (EXIT_SUCCESS);
 }

@@ -6,13 +6,13 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:03:05 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/12 19:55:07 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/12 21:03:36 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-static void	get_raw(t_string file, t_map_data *map_data)
+void	get_raw(t_string file, t_map_data *map_data)
 {
 	char	*ext_ptr;
 	int		fd_rd[2];
@@ -39,7 +39,7 @@ static void	get_raw(t_string file, t_map_data *map_data)
 	close(fd_rd[0]);
 }
 
-static void	check_keys(t_map_data *map_data, char keys[6][3])
+void	check_keys(t_map_data *map_data, char keys[6][3])
 {
 	unsigned short	i;
 	unsigned short	j;
@@ -65,7 +65,7 @@ static void	check_keys(t_map_data *map_data, char keys[6][3])
 			ft_error(KEY);
 }
 
-static void	get_textures(t_map_data *map_data, char text_key[4][3])
+void	get_textures(t_map_data *map_data, char text_key[4][3])
 {
 	unsigned short	i;
 	unsigned short	j;
@@ -90,7 +90,7 @@ static void	get_textures(t_map_data *map_data, char text_key[4][3])
 	}
 }
 
-static void	get_colors(t_map_data *map_data)
+void	get_colors(t_map_data *map_data)
 {
 	unsigned short	i;
 	unsigned short	*arr;
@@ -119,19 +119,19 @@ static void	get_colors(t_map_data *map_data)
 	}
 }
 
-void	parser(t_string file, t_map_data *map_data)
+void	check_rgb_values(t_map_data *map_data)
 {
 	unsigned short	i;
-
-	get_raw(file, map_data);
-	check_keys(map_data, (char [6][3]){"NO", "SO", "EA", "WE", "C ", "F "});
-	get_textures(map_data, (char [4][3]){"NO", "SO", "EA", "WE"});
-	get_colors(map_data);
-	i = -1;
-	while (++i < 3)
-		if (map_data->ceil[i] < 0 || map_data->ceil[i] > 255 \
-		|| map_data->floor[i] < 0 || map_data->floor[i] > 255)
+	
+	i = 0;
+	while (i < 3)
+	{
+		if (map_data->ceil[i] < 0 || map_data->ceil[i] > 255)
 			ft_error(RGB);
+		if (map_data->floor[i] < 0 || map_data->floor[i] > 255)
+			ft_error(RGB);
+		i++;
+	}
 }
 
 /*

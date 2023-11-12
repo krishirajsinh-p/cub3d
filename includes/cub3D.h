@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/12 20:06:03 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/12 21:04:38 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,15 @@ typedef struct s_map_data
 	t_string		*map;
 }	t_map_data;
 
+//main.c
 void	ft_error(t_string error_message);
 void	parser(t_string file, t_map_data *map_data);
+
+//parser.c
+void	get_raw(t_string file, t_map_data *map_data);
+void	check_keys(t_map_data *map_data, char keys[6][3]);
+void	get_textures(t_map_data *map_data, char text_key[4][3]);
+void	get_colors(t_map_data *map_data);
+void	check_rgb_values(t_map_data *map_data);
 
 #endif
