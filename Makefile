@@ -6,7 +6,7 @@
 #    By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 18:51:03 by kpuwar            #+#    #+#              #
-#    Updated: 2023/11/05 22:05:34 by kpuwar           ###   ########.fr        #
+#    Updated: 2023/11/12 16:12:04 by kpuwar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT	:= ./lib/libft
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -Ofast
-RM = rm -f
+RM = rm -rf
 
 all: libmlx libft $(NAME)
 
@@ -38,31 +38,28 @@ $(NAME): $(OBJS)
 
 clean:
 	@$(RM) $(OBJS)
-	@make -C $(LIBFT) clean
+	@make -C $(LIBFT) fclean
+	@make -C $(LIBMLX) clean
+	@$(RM) lib/MLX42/CMakeFiles
+	@$(RM) lib/MLX42/cmake_install.cmake
+	@$(RM) lib/MLX42/Makefile
 
 fclean: clean
 	@$(RM) $(NAME)
-	@make -C $(LIBFT) fclean
-	@make -C $(LIBMLX) clean
 
 re: fclean all
 
-norm:
-	@norminette includes
-	@norminette src
-	@norminette lib/libft
-
 brew:
 	if [ -d $(HOME)/.brew ]; then \
-		zsh -c "brew update"; \
-		zsh -c "brew install glfw"; \
-		zsh -c "brew install cmake"; \
+		brew update; \
+		brew install glfw; \
+		brew install cmake; \
 	else \
 		git clone --depth=1 https://github.com/Homebrew/brew $(HOME)/.brew; \
-		$(shell echo 'export PATH=$$HOME/.brew/bin:$$PATH' >> $(HOME)/.zshrc) \
-		zsh -c "brew update"; \
-		zsh -c "brew install glfw"; \
-		zsh -c "brew install cmake"; \
+		echo 'export PATH=$$HOME/.brew/bin:$$PATH' >> $(HOME)/.zshrc; \
+		brew update; \
+		brew install glfw; \
+		brew install cmake; \
 	fi
 
-.PHONY: all clean fclean re libmlx libft norm brew
+.PHONY: all clean fclean re libmlx libft brew
