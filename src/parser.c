@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:03:05 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/12 22:54:29 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/12 23:01:20 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	get_textures(t_map_data *map_data, char text_key[4][3])
 {
 	t_ushort	i;
 	t_ushort	j;
-	t_string		*temp_ptr;
+	t_string	*temp_ptr;
 
 	i = 0;
 	while (map_data->raw[i][0] != '1' && map_data->raw[i][0] != '0' \
@@ -122,7 +122,7 @@ void	get_colors(t_map_data *map_data)
 void	check_rgb_values(t_map_data *map_data)
 {
 	t_ushort	i;
-	
+
 	i = 0;
 	while (i < 3)
 	{
