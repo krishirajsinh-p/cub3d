@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:03:05 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/12 23:01:20 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/13 05:00:21 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	get_raw(t_string file, t_map_data *map_data)
 		close(fd_rd[0]);
 		exit(EXIT_FAILURE);
 	}
-	map_data->raw = ft_split(buffer, '\n');
+	ext_ptr = ft_strtrim(buffer, " \n");
+	map_data->raw = ft_split(ext_ptr, '\n');
+	free(ext_ptr);
 	close(fd_rd[0]);
 }
 
@@ -48,7 +50,7 @@ void	check_keys(t_map_data *map_data, char keys[6][3])
 	i = 0;
 	ft_bzero(key_count, sizeof(t_ushort) * 6);
 	while (map_data->raw[i][0] != '1' && map_data->raw[i][0] != '0' \
-	&& map_data->raw[i][0] != ' ' && map_data->raw[i] != NULL)
+	&& map_data->raw[i] != NULL)
 	{
 		j = 0;
 		while (j < 6)
@@ -73,7 +75,7 @@ void	get_textures(t_map_data *map_data, char text_key[4][3])
 
 	i = 0;
 	while (map_data->raw[i][0] != '1' && map_data->raw[i][0] != '0' \
-	&& map_data->raw[i][0] != ' ' && map_data->raw[i] != NULL)
+	&& map_data->raw[i] != NULL)
 	{
 		j = 0;
 		while (j < 4)
@@ -98,7 +100,7 @@ void	get_colors(t_map_data *map_data)
 
 	i = -1;
 	while (map_data->raw[++i][0] != '1' && map_data->raw[i][0] != '0' \
-	&& map_data->raw[i][0] != ' ' && map_data->raw[i] != NULL)
+	&& map_data->raw[i] != NULL)
 	{
 		if (ft_strncmp(map_data->raw[i], "F ", 2) == 0)
 			arr = &map_data->floor[0];
