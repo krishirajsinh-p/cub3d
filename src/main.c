@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/14 07:49:08 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/14 21:28:35 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	ft_free(t_map_data *map_data)
 		if (map_data_ptr->raw)
 			ft_free_split(map_data_ptr->raw);
 		if (map_data_ptr->map)
-			free(map_data_ptr->map);
+			ft_free_split(map_data_ptr->map);
 		i = -1;
 		while (++i < 4)
 			if (map_data_ptr->texture[i])

@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:32:38 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/14 08:04:25 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/14 22:33:10 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_openings(t_map_data *map_data)
 	bool	has_one;
 
 	i[0] = -1;
-	while (++i[0] < map_data->map_size)
+	while (++i[0] < map_data->height)
 	{
 		line = ft_strtrim(map_data->map[i[0]], " ");
 		has_one = line[0] == '1' && line[ft_strlen(line) - 1] == '1';
@@ -57,7 +57,7 @@ void	check_openings(t_map_data *map_data)
 			ft_error(O_MAP);
 	}
 	i[0] = 0;
-	while (++i[0] < map_data->map_size - 1)
+	while (++i[0] < map_data->height - 1)
 	{
 		i[1] = 0;
 		while (++i[1] < (short)ft_strlen(map_data->map[i[0]]) - 1)
@@ -71,25 +71,34 @@ void	check_openings(t_map_data *map_data)
 }
 
 /*
-	sets map from the raw map data.
-	!! NOTE: all the pointers of map are just pointing
-				to the same memory as raw map data.
+	adjust map from the raw map data and makes regular 2d array for map.
+	also calculates map's height and width.
 */
 void	get_map(t_map_data *map_data, short start, short end)
 {
-	t_ushort	i;
+	short	i;
 
 	if (start == -1 || end == -1)
 		ft_error(O_MAP);
-	map_data->map_size = (end - start) + 1;
-	map_data->map = ft_calloc(map_data->map_size + 1, sizeof(t_string));
+	map_data->height = (end - start) + 1;
+	map_data->map = ft_calloc(map_data->height + 1, sizeof(t_string));
 	if (map_data->map == NULL)
 		ft_error(ALLOC);
-	i = 0;
-	while (i < map_data->map_size)
+	map_data->width = 0;
+	i = -1;
+	while (++i < map_data->height)
+		if (ft_strlen(map_data->raw[start + i]) > map_data->width)
+			map_data->width = ft_strlen(map_data->raw[start + i]);
+	i = -1;
+	while (++i < map_data->height)
 	{
-		map_data->map[i] = map_data->raw[start + i];
-		i++;
+		map_data->map[i] = malloc((map_data->width + 1) * sizeof(char));
+		if (map_data->map[i] == NULL)
+			ft_error(ALLOC);
+		ft_memset(map_data->map[i], ' ', map_data->width);
+		map_data->map[i][map_data->width] = '\0';
+		ft_memcpy(map_data->map[i], map_data->raw[start + i], \
+		ft_strlen(map_data->raw[start + i]));
 	}
 }
 
@@ -104,7 +113,7 @@ void	get_player(t_map_data *map_data)
 	short		j;
 
 	i = -1;
-	while (++i < map_data->map_size)
+	while (++i < map_data->height)
 	{
 		j = -1;
 		while (map_data->map[i][++j])
