@@ -6,7 +6,7 @@
 #    By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 18:51:03 by kpuwar            #+#    #+#              #
-#    Updated: 2023/11/12 16:12:04 by kpuwar           ###   ########.fr        #
+#    Updated: 2023/11/14 01:04:12 by kpuwar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,12 +39,12 @@ $(NAME): $(OBJS)
 clean:
 	@$(RM) $(OBJS)
 	@make -C $(LIBFT) fclean
+
+fclean: clean
 	@make -C $(LIBMLX) clean
 	@$(RM) lib/MLX42/CMakeFiles
 	@$(RM) lib/MLX42/cmake_install.cmake
 	@$(RM) lib/MLX42/Makefile
-
-fclean: clean
 	@$(RM) $(NAME)
 
 re: fclean all
