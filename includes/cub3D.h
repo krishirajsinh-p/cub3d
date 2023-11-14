@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/14 05:38:52 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/14 20:16:58 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,12 @@ typedef struct s_player
 	char		dir;
 }	t_player;
 
-
 typedef struct s_map_data
 {
 	t_string	*raw;
 	t_string	texture[4];
-	t_ushort	floor[3];
-	t_ushort	ceil[3];
+	short		floor[3];
+	short		ceil[3];
 	t_string	*map;
 	t_ushort	map_size;
 	t_player	player;
