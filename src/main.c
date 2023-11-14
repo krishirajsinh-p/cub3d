@@ -6,12 +6,19 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/14 05:39:06 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/14 07:49:08 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
+/*
+	when called for the first time with struct address
+	static map_data_ptr will point at struct. Rest
+	of the times when function is called with any arg
+	it will check if pointer is NULL(to avoid free error)
+	if not then it frees the memory
+*/
 static void	ft_free(t_map_data *map_data)
 {
 	static t_map_data	*map_data_ptr;
@@ -32,6 +39,9 @@ static void	ft_free(t_map_data *map_data)
 	}
 }
 
+/*
+	free up the memory, put message on stderr and exit with failure
+*/
 void	ft_error(t_string error_message)
 {
 	ft_free(NULL);

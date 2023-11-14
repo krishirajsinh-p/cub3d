@@ -6,12 +6,15 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:32:38 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/14 05:38:43 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/14 08:04:25 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
+/*
+	gives the index for the start and end line of the map.
+*/
 short	get_start_and_end(t_map_data *map_data)
 {
 	static t_ushort	i;
@@ -35,6 +38,9 @@ short	get_start_and_end(t_map_data *map_data)
 	return (-1);
 }
 
+/*
+	check for the openings in the map, map should be closed.
+*/
 void	check_openings(t_map_data *map_data)
 {
 	short	i[2];
@@ -64,6 +70,11 @@ void	check_openings(t_map_data *map_data)
 	}
 }
 
+/*
+	sets map from the raw map data.
+	!! NOTE: all the pointers of map are just pointing
+				to the same memory as raw map data.
+*/
 void	get_map(t_map_data *map_data, short start, short end)
 {
 	t_ushort	i;
@@ -82,6 +93,11 @@ void	get_map(t_map_data *map_data, short start, short end)
 	}
 }
 
+/*
+	sets the player data, it's position and it's direction.
+	also checks if there is exactly on player in the map.
+	it also checks if there isn't any useless char in the map.
+*/
 void	get_player(t_map_data *map_data)
 {
 	short		i;

@@ -6,12 +6,18 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:03:05 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/13 22:52:51 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/14 07:59:21 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
+/*
+	checks if filename passed as arg has '.cub' extension.
+	checks if file can be opened and read, if can be then
+	it copies all the data from the file to buffer.
+	split the buffer with '\n' to get the raw data in 2d array.
+*/
 void	get_raw(t_string file, t_map_data *map_data)
 {
 	char	*ext_ptr;
@@ -41,6 +47,10 @@ void	get_raw(t_string file, t_map_data *map_data)
 	close(fd_rd[0]);
 }
 
+/*
+	loops over the raw map data and checks for key count.
+	every key should be present exactly one.
+*/
 void	check_keys(t_map_data *map_data, char keys[6][4])
 {
 	t_ushort	i;
@@ -67,6 +77,9 @@ void	check_keys(t_map_data *map_data, char keys[6][4])
 			ft_error(KEY);
 }
 
+/*
+	gets all the textures paths from the file
+*/
 void	get_textures(t_map_data *map_data, char text_key[4][4])
 {
 	t_ushort	i;
@@ -92,6 +105,9 @@ void	get_textures(t_map_data *map_data, char text_key[4][4])
 	}
 }
 
+/*
+	gets all the color info for floor and ceiling in int format.
+*/
 void	get_colors(t_map_data *map_data)
 {
 	t_ushort	i;
@@ -121,6 +137,9 @@ void	get_colors(t_map_data *map_data)
 	}
 }
 
+/*
+	checks if RGB values for the colors are in the range [0,255]
+*/
 void	check_rgb_values(t_map_data *map_data)
 {
 	t_ushort	i;
