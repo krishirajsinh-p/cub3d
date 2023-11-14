@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/13 04:07:44 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/14 05:39:06 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,13 @@ void	ft_error(t_string error_message)
 void	parser(t_string file, t_map_data *map_data)
 {
 	get_raw(file, map_data);
-	check_keys(map_data, (char [6][3]){"NO", "SO", "EA", "WE", "C ", "F "});
-	get_textures(map_data, (char [4][3]){"NO", "SO", "EA", "WE"});
+	check_keys(map_data, (char [6][4]){"NO ", "SO ", "EA ", "WE ", "C ", "F "});
+	get_textures(map_data, (char [4][4]){"NO ", "SO ", "EA ", "WE "});
 	get_colors(map_data);
 	check_rgb_values(map_data);
+	get_map(map_data, get_start_and_end(map_data), get_start_and_end(map_data));
+	check_openings(map_data);
+	get_player(map_data);
 }
 // for (size_t i = 0; map_data->raw[i]; i++)
 // 	printf("%lu\t|\t%s\n", i+1, map_data->raw[i]);
@@ -54,10 +57,10 @@ int	main(int argc, char const *argv[])
 {
 	t_map_data	map_data;
 
-	if (argc != 2)
-		ft_error(ARG);
 	ft_bzero(&map_data, sizeof(t_map_data));
 	ft_free(&map_data);
+	if (argc != 2)
+		ft_error(ARG);
 	parser((t_string)argv[1], &map_data);
 	ft_free(NULL);
 	return (EXIT_SUCCESS);

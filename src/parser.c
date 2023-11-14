@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:03:05 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/13 05:00:21 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/13 22:52:51 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	get_raw(t_string file, t_map_data *map_data)
 	close(fd_rd[0]);
 }
 
-void	check_keys(t_map_data *map_data, char keys[6][3])
+void	check_keys(t_map_data *map_data, char keys[6][4])
 {
 	t_ushort	i;
 	t_ushort	j;
@@ -55,7 +55,7 @@ void	check_keys(t_map_data *map_data, char keys[6][3])
 		j = 0;
 		while (j < 6)
 		{
-			if (ft_strncmp(map_data->raw[i], keys[j], 2) == 0)
+			if (ft_strncmp(map_data->raw[i], keys[j], ft_strlen(keys[j])) == 0)
 				key_count[j] += 1;
 			j++;
 		}
@@ -67,7 +67,7 @@ void	check_keys(t_map_data *map_data, char keys[6][3])
 			ft_error(KEY);
 }
 
-void	get_textures(t_map_data *map_data, char text_key[4][3])
+void	get_textures(t_map_data *map_data, char text_key[4][4])
 {
 	t_ushort	i;
 	t_ushort	j;
@@ -80,7 +80,7 @@ void	get_textures(t_map_data *map_data, char text_key[4][3])
 		j = 0;
 		while (j < 4)
 		{
-			if (ft_strncmp(map_data->raw[i], text_key[j], 2) == 0)
+			if (ft_strncmp(map_data->raw[i], text_key[j], 3) == 0)
 			{
 				temp_ptr = ft_split(map_data->raw[i], ' ');
 				map_data->texture[j] = ft_strdup(temp_ptr[1]);
