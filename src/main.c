@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/14 21:28:35 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/16 14:09:45 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ void	parser(t_string file, t_map_data *map_data)
 	check_openings(map_data);
 	get_player(map_data);
 }
-// for (size_t i = 0; map_data->raw[i]; i++)
-// 	printf("%lu\t|\t%s\n", i+1, map_data->raw[i]);
 
 int	main(int argc, char const *argv[])
 {
@@ -75,3 +73,17 @@ int	main(int argc, char const *argv[])
 	ft_free(NULL);
 	return (EXIT_SUCCESS);
 }
+
+// for (int i = 0; i < 4; i++)
+// 	printf("%d\t\t%s\n",i+1,map_data->texture[i]);
+// printf("\nC\t\t");
+// for (int i = 0; i < 3; i++)
+// 	printf("%d,",map_data->ceil[i]);
+// printf("\nF\t\t");
+// for (int i = 0; i < 3; i++)
+// 	printf("%d,",map_data->floor[i]);
+// printf("\n\n");
+// for (int i = 0; i < map_data->height; i++)
+// 	printf("%i\t\t%s\n", i, map_data->map[i]);
+// printf("\nPlayer's (X,Y)\t(%d, %d) dir %c\n", map_data->player.pos[X],\
+ map_data->player.pos[Y], map_data->player.dir);

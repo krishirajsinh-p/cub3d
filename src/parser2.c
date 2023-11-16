@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:32:38 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/14 22:33:10 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/16 12:53:35 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,13 @@ void	get_map(t_map_data *map_data, short start, short end)
 */
 void	get_player(t_map_data *map_data)
 {
-	short		i;
-	short		j;
+	short	i;
+	short	j;
 
-	i = -1;
+	i = 0;
 	while (++i < map_data->height)
 	{
-		j = -1;
+		j = 0;
 		while (map_data->map[i][++j])
 		{
 			if (map_data->map[i][j] == 'N' || map_data->map[i][j] == 'S' || \

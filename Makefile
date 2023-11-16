@@ -6,22 +6,23 @@
 #    By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 18:51:03 by kpuwar            #+#    #+#              #
-#    Updated: 2023/11/14 20:10:00 by kpuwar           ###   ########.fr        #
+#    Updated: 2023/11/15 00:44:30 by kpuwar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
 #replace wildcard with file names later on
-INCLUDES = $(wildcard includes/*.h)
-SRCS = $(wildcard src/*.c)
-OBJS = $(SRCS:.c=.o)
+INCLUDES	=	-I ./includes -I $(LIBFT)/libft.h -I $(LIBMLX)/include
+SRCS 		=	$(wildcard src/*.c)
+OBJS		=	$(SRCS:.c=.o)
 
-LIBMLX	:= ./lib/MLX42
-LIBFT	:= ./lib/libft
+LIBMLX		=	./lib/MLX42
+LIBFT		=	./lib/libft
+LIBS		=	$(LIBFT)/libft.a $(LIBMLX)/libmlx42.a -ldl -lglfw -pthread -lm -L"$(HOME)/.brew/opt/glfw/lib/"
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -Ofast
+CFLAGS = -Wall -Werror -Wextra -Wunreachable-code -Ofast
 RM = rm -rf
 
 all: libmlx libft $(NAME)
@@ -34,7 +35,7 @@ libft:
 	@make -C $(LIBFT)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT)/libft.a $(LIBMLX)/libmlx42.a -ldl -lm -lglfw -L"$(HOME)/.brew/opt/glfw/lib/" -I$(INCLUDES) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(INCLUDES) -o $(NAME)
 
 clean:
 	@$(RM) $(OBJS)
