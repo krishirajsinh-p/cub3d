@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:03:05 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/14 21:34:39 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/22 00:29:12 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,12 +118,11 @@ void	get_colors(t_map_data *map_data)
 	while (map_data->raw[++i][0] != '1' && map_data->raw[i][0] != '0' \
 	&& map_data->raw[i] != NULL)
 	{
+		arr = NULL;
 		if (ft_strncmp(map_data->raw[i], "F ", 2) == 0)
 			arr = &map_data->floor[0];
 		else if (ft_strncmp(map_data->raw[i], "C ", 2) == 0)
 			arr = &map_data->ceil[0];
-		else
-			arr = NULL;
 		if (arr != NULL)
 		{
 			temp_ptr[0] = ft_split(map_data->raw[i], ' ');
