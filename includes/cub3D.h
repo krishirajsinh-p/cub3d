@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/22 06:49:29 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/23 20:21:25 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <stdio.h>
+
+# define FOV 0.66
 
 # define ALLOC "Error: Memory allocation failure\n"
 # define ARG "cub3D: Illegal cub3D command\nusage:\t./cub3D <path to map>\n"
@@ -52,12 +54,18 @@ enum e_axis
 	Y = 1
 };
 
-typedef struct s_player
+enum e_vectors
 {
-	t_ushort	count;
-	double		pos[2];
-	char		dir;
-}	t_player;
+	POS = 0,
+	DIR = 1,
+	CAM = 2
+};
+
+typedef struct s_vector
+{
+	double	x;
+	double	y;
+}	t_vector;
 
 typedef struct s_map_data
 {
@@ -68,7 +76,7 @@ typedef struct s_map_data
 	t_string	*map;
 	t_ushort	height;
 	t_ushort	width;
-	t_player	player;
+	t_vector	vectors[3];
 }	t_map_data;
 
 //main.c

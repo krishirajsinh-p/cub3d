@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:32:38 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/16 12:53:35 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/23 21:27:33 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,31 @@ void	get_map(t_map_data *map_data, short start, short end)
 	}
 }
 
+// sets the direction vector and camera vector
+static void	set_vectors(char dir, t_map_data *map_data)
+{
+	if (dir == 'N')
+	{
+		map_data->vectors[DIR] = (t_vector){0, -1};
+		map_data->vectors[CAM] = (t_vector){FOV, 0};
+	}
+	else if (dir == 'S')
+	{
+		map_data->vectors[DIR] = (t_vector){0, 1};
+		map_data->vectors[CAM] = (t_vector){FOV * -1, 0};
+	}
+	else if (dir == 'E')
+	{
+		map_data->vectors[DIR] = (t_vector){-1, 0};
+		map_data->vectors[CAM] = (t_vector){0, FOV * -1};
+	}
+	else
+	{
+		map_data->vectors[DIR] = (t_vector){1, 0};
+		map_data->vectors[CAM] = (t_vector){0, FOV};
+	}
+}
+
 /*
 	sets the player data, it's position and it's direction.
 	also checks if there is exactly on player in the map.
@@ -109,8 +134,8 @@ void	get_map(t_map_data *map_data, short start, short end)
 */
 void	get_player(t_map_data *map_data)
 {
-	short	i;
-	short	j;
+	t_ushort	i;
+	t_ushort	j;
 
 	i = 0;
 	while (++i < map_data->height)
@@ -121,19 +146,22 @@ void	get_player(t_map_data *map_data)
 			if (map_data->map[i][j] == 'N' || map_data->map[i][j] == 'S' || \
 			map_data->map[i][j] == 'E' || map_data->map[i][j] == 'W')
 			{
-				map_data->player.pos[X] = i;
-				map_data->player.pos[Y] = j;
-				map_data->player.dir = map_data->map[i][j];
-				map_data->player.count++;
+				if (map_data->vectors[POS].x != 0 \
+				&& map_data->vectors[POS].y != 0)
+					ft_error(ONE_PLYR);
+				map_data->vectors[POS].x = (double)i + 0.5;
+				map_data->vectors[POS].y = (double)j + 0.5;
+				set_vectors(map_data->map[i][j], map_data);
+				map_data->map[i][j] = '0';
 			}
 			else if (map_data->map[i][j] != '0' && map_data->map[i][j] != '1' \
 			&& map_data->map[i][j] != ' ')
 				ft_error(INV_CHAR);
 		}
 	}
-	if (map_data->player.count != 1)
-		ft_error(ONE_PLYR);
 }
 
 	// for (size_t i = 0; map_data->map[i]; i++)
 	// 	printf("%lu\t|\t[%s]\n", i + 1, map_data->map[i]);
+	// for (size_t i = 0; i < 3; i++)
+	// 	printf("(%f, %f)\n", map_data->vectors[i].x, map_data->vectors[i].y);
