@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/14 22:15:24 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/22 06:49:29 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "../lib/libft/libft.h"
+# include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <stdio.h>
 
@@ -54,7 +55,7 @@ enum e_axis
 typedef struct s_player
 {
 	t_ushort	count;
-	t_ushort	pos[2];
+	double		pos[2];
 	char		dir;
 }	t_player;
 
@@ -71,6 +72,7 @@ typedef struct s_map_data
 }	t_map_data;
 
 //main.c
+void	ft_free(t_map_data *map_data);
 void	ft_error(t_string error_message);
 void	parser(t_string file, t_map_data *map_data);
 

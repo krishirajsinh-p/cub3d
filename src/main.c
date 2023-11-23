@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/16 14:09:45 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/22 03:24:15 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	it will check if pointer is NULL(to avoid free error)
 	if not then it frees the memory
 */
-static void	ft_free(t_map_data *map_data)
+void	ft_free(t_map_data *map_data)
 {
 	static t_map_data	*map_data_ptr;
 	t_ushort			i;
@@ -37,6 +37,7 @@ static void	ft_free(t_map_data *map_data)
 			if (map_data_ptr->texture[i])
 				free(map_data_ptr->texture[i]);
 	}
+	// free other data structures as well here
 }
 
 /*
@@ -44,8 +45,11 @@ static void	ft_free(t_map_data *map_data)
 */
 void	ft_error(t_string error_message)
 {
+	if (ft_strncmp("mlx", error_message, 3) == 0)
+		ft_putstr_fd((char *)mlx_strerror(mlx_errno), STDERR_FILENO);
+	else
+		ft_putstr_fd(error_message, STDERR_FILENO);
 	ft_free(NULL);
-	ft_putstr_fd(error_message, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }
 
@@ -70,20 +74,21 @@ int	main(int argc, char const *argv[])
 	if (argc != 2)
 		ft_error(ARG);
 	parser((t_string)argv[1], &map_data);
+	//init game
 	ft_free(NULL);
 	return (EXIT_SUCCESS);
 }
 
 // for (int i = 0; i < 4; i++)
-// 	printf("%d\t\t%s\n",i+1,map_data->texture[i]);
+// 	printf("%d\t\t%s\n",i+1,map_data.texture[i]);
 // printf("\nC\t\t");
 // for (int i = 0; i < 3; i++)
-// 	printf("%d,",map_data->ceil[i]);
+// 	printf("%d,",map_data.ceil[i]);
 // printf("\nF\t\t");
 // for (int i = 0; i < 3; i++)
-// 	printf("%d,",map_data->floor[i]);
+// 	printf("%d,",map_data.floor[i]);
 // printf("\n\n");
-// for (int i = 0; i < map_data->height; i++)
-// 	printf("%i\t\t%s\n", i, map_data->map[i]);
-// printf("\nPlayer's (X,Y)\t(%d, %d) dir %c\n", map_data->player.pos[X],\
- map_data->player.pos[Y], map_data->player.dir);
+// for (int i = 0; i < map_data.height; i++)
+// 	printf("%i\t\t%s\n", i, map_data.map[i]);
+// printf("\nPlayer's (X,Y)\t(%f, %f) dir %c\n", map_data.player.pos[X],\
+//  map_data.player.pos[Y], map_data.player.dir);
