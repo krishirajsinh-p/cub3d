@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/22 03:24:15 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/24 03:33:44 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,37 @@
 
 /*
 	when called for the first time with struct address
-	static map_data_ptr will point at struct. Rest
+	static ptr will point at s_game_data struct. Rest
 	of the times when function is called with any arg
 	it will check if pointer is NULL(to avoid free error)
 	if not then it frees the memory
 */
-void	ft_free(t_map_data *map_data)
+static void	ft_free(t_game_data *game_data)
 {
-	static t_map_data	*map_data_ptr;
-	t_ushort			i;
+	static t_game_data	*ptr;
+	short				i;
 
-	if (map_data_ptr == NULL)
-		map_data_ptr = map_data;
+	if (ptr == NULL)
+		ptr = game_data;
 	else
 	{
-		if (map_data_ptr->raw)
-			ft_free_split(map_data_ptr->raw);
-		if (map_data_ptr->map)
-			ft_free_split(map_data_ptr->map);
+		if (ptr->map_data->raw)
+			ft_free_split(ptr->map_data->raw);
+		if (ptr->map_data->map)
+			ft_free_split(ptr->map_data->map);
 		i = -1;
 		while (++i < 4)
-			if (map_data_ptr->texture[i])
-				free(map_data_ptr->texture[i]);
+			if (ptr->map_data->texture[i])
+				free(ptr->map_data->texture[i]);
+		i = -1;
+		while (++i < 4)
+			if (ptr->walls[i])
+				mlx_delete_texture(ptr->walls[i]);
+		if (ptr->mlx && ptr->img)
+			mlx_delete_image(ptr->mlx, ptr->img);
+		if (ptr->mlx)
+			mlx_terminate(ptr->mlx);
 	}
-	// free other data structures as well here
 }
 
 /*
@@ -68,13 +75,19 @@ void	parser(t_string file, t_map_data *map_data)
 int	main(int argc, char const *argv[])
 {
 	t_map_data	map_data;
+	t_game_data	game_data;
 
 	ft_bzero(&map_data, sizeof(t_map_data));
-	ft_free(&map_data);
+	ft_bzero(&game_data, sizeof(t_game_data));
+	game_data.map_data = &map_data;
+	ft_free(&game_data);
 	if (argc != 2)
 		ft_error(ARG);
 	parser((t_string)argv[1], &map_data);
-	//init game
+	set_mlx_elements(&game_data);
+	if (mlx_loop_hook(game_data.mlx, ft_close, &game_data) == false)
+		ft_error("mlx");
+	mlx_loop(game_data.mlx);
 	ft_free(NULL);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/23 21:32:20 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/24 03:27:58 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,17 @@ typedef struct s_map_data
 	t_vector	vectors[3];
 }	t_map_data;
 
+typedef struct s_game_data
+{
+	int32_t			screenwidth;
+	int32_t			screenheight;
+	mlx_t			*mlx;
+	mlx_image_t		*img;
+	mlx_texture_t	*walls[4];
+	t_map_data		*map_data;
+}	t_game_data;
+
 //main.c
-void	ft_free(t_map_data *map_data);
 void	ft_error(t_string error_message);
 void	parser(t_string file, t_map_data *map_data);
 
@@ -59,5 +68,9 @@ short	get_start_and_end(t_map_data *map_data);
 void	get_map(t_map_data *map_data, short start, short end);
 void	check_openings(t_map_data *map_data);
 void	get_player(t_map_data *map_data);
+
+//mlx.c
+void	set_mlx_elements(t_game_data *game_data);
+void	ft_close(void *param);
 
 #endif

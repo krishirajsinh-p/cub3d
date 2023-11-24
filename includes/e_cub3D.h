@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 21:30:23 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/23 21:31:41 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/24 03:35:50 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,10 @@ enum e_vectors
 	CAM = 2
 };
 
-# endif
+enum e_screen_dimensions
+{
+	S_WIDTH = 1920,
+	S_HEIGHT = 1080
+};
+
+#endif

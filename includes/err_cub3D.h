@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 21:30:20 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/23 21:31:16 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/24 03:35:55 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,4 @@
 # define INV_CHAR "Error: Map has invalid character\n"
 # define ONE_PLYR "Error: There has to be exactly one player in the map\n"
 
-# endif
+#endif
