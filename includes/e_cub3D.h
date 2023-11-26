@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 21:30:23 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/24 03:35:50 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/25 00:59:03 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,6 @@ enum e_vectors
 	POS = 0,
 	DIR = 1,
 	CAM = 2
-};
-
-enum e_screen_dimensions
-{
-	S_WIDTH = 1920,
-	S_HEIGHT = 1080
 };
 
 #endif
