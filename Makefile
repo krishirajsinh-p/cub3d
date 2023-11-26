@@ -6,7 +6,7 @@
 #    By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/05 18:51:03 by kpuwar            #+#    #+#              #
-#    Updated: 2023/11/24 01:57:32 by kpuwar           ###   ########.fr        #
+#    Updated: 2023/11/26 21:23:16 by kpuwar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,9 +44,10 @@ clean:
 fclean: clean
 	@make -C $(LIBFT) fclean
 	@make -C $(LIBMLX) clean
-	@$(RM) lib/MLX42/CMakeFiles
-	@$(RM) lib/MLX42/cmake_install.cmake
-	@$(RM) lib/MLX42/Makefile
+	@$(RM) $(LIBMLX)/CMakeFiles
+	@$(RM) $(LIBMLX)/cmake_install.cmake
+	@$(RM) $(LIBMLX)/Makefile
+	@$(RM) $(LIBMLX)/CMakeCache.txt
 	@$(RM) $(NAME)
 
 re: fclean all
