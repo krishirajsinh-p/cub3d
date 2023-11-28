@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/26 21:55:17 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/28 04:13:24 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ static void	ft_free(t_game_data *game_data)
 		while (++i < 4)
 			if (ptr->walls[i])
 				mlx_delete_texture(ptr->walls[i]);
-		if (ptr->mlx && ptr->img)
-			mlx_delete_image(ptr->mlx, ptr->img);
 		if (ptr->mlx)
 			mlx_terminate(ptr->mlx);
 	}
@@ -85,9 +83,10 @@ int	main(int argc, char const *argv[])
 		ft_error(ARG);
 	parser((t_string)argv[1], &map_data);
 	set_mlx_elements(&game_data);
-	if (mlx_loop_hook(game_data.mlx, ft_close, &game_data) == false)	//make this control hook
+	if (mlx_loop_hook(game_data.mlx, check_input, &game_data) == false)
 		ft_error("mlx");
-	//raycasting hook
+	if (mlx_loop_hook(game_data.mlx, raycasting, &game_data) == false)
+		ft_error("mlx");
 	mlx_loop(game_data.mlx);
 	ft_free(NULL);
 	return (EXIT_SUCCESS);

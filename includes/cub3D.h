@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/28 03:07:21 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/28 04:14:36 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ void	get_player(t_map_data *map_data);
 
 //mlx.c
 void	set_mlx_elements(t_game_data *game_data);
-void	ft_close(void *param);
-// int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+void	check_input(void *param);
+int32_t	ft_color(int32_t r, int32_t g, int32_t b);
+
+//engine.c
+void	raycasting(void *param);
+void	paint_floor_ceil(t_game_data *game);
 
 #endif
