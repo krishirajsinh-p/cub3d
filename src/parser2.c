@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:32:38 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/23 21:27:33 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/28 05:28:15 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,27 +103,27 @@ void	get_map(t_map_data *map_data, short start, short end)
 }
 
 // sets the direction vector and camera vector
-static void	set_vectors(char dir, t_map_data *map_data)
+static void	set_vectors(char dir, t_game_data *game_data)
 {
 	if (dir == 'N')
 	{
-		map_data->vectors[DIR] = (t_vector){0, -1};
-		map_data->vectors[CAM] = (t_vector){FOV, 0};
+		game_data->vectors[DIR] = (t_vector){0, -1};
+		game_data->vectors[CAM] = (t_vector){FOV, 0};
 	}
 	else if (dir == 'S')
 	{
-		map_data->vectors[DIR] = (t_vector){0, 1};
-		map_data->vectors[CAM] = (t_vector){FOV * -1, 0};
+		game_data->vectors[DIR] = (t_vector){0, 1};
+		game_data->vectors[CAM] = (t_vector){FOV * -1, 0};
 	}
 	else if (dir == 'E')
 	{
-		map_data->vectors[DIR] = (t_vector){-1, 0};
-		map_data->vectors[CAM] = (t_vector){0, FOV * -1};
+		game_data->vectors[DIR] = (t_vector){-1, 0};
+		game_data->vectors[CAM] = (t_vector){0, FOV * -1};
 	}
 	else
 	{
-		map_data->vectors[DIR] = (t_vector){1, 0};
-		map_data->vectors[CAM] = (t_vector){0, FOV};
+		game_data->vectors[DIR] = (t_vector){1, 0};
+		game_data->vectors[CAM] = (t_vector){0, FOV};
 	}
 }
 
@@ -132,7 +132,7 @@ static void	set_vectors(char dir, t_map_data *map_data)
 	also checks if there is exactly on player in the map.
 	it also checks if there isn't any useless char in the map.
 */
-void	get_player(t_map_data *map_data)
+void	get_player(t_map_data *map_data, t_game_data *game_data)
 {
 	t_ushort	i;
 	t_ushort	j;
@@ -146,12 +146,12 @@ void	get_player(t_map_data *map_data)
 			if (map_data->map[i][j] == 'N' || map_data->map[i][j] == 'S' || \
 			map_data->map[i][j] == 'E' || map_data->map[i][j] == 'W')
 			{
-				if (map_data->vectors[POS].x != 0 \
-				&& map_data->vectors[POS].y != 0)
+				if (game_data->vectors[POS].x != 0 \
+				&& game_data->vectors[POS].y != 0)
 					ft_error(ONE_PLYR);
-				map_data->vectors[POS].x = (double)i + 0.5;
-				map_data->vectors[POS].y = (double)j + 0.5;
-				set_vectors(map_data->map[i][j], map_data);
+				game_data->vectors[POS].x = (double)i + 0.5;
+				game_data->vectors[POS].y = (double)j + 0.5;
+				set_vectors(map_data->map[i][j], game_data);
 				map_data->map[i][j] = '0';
 			}
 			else if (map_data->map[i][j] != '0' && map_data->map[i][j] != '1' \

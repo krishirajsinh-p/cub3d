@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 22:13:50 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/28 04:17:39 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/28 05:35:29 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	paint_floor_ceil(t_game_data *game)
 	t_ushort	x;
 	t_ushort	y;
 
-	ceil = game->map_data->ceil;
-	floor = game->map_data->floor;
+	ceil = game->map_data.ceil;
+	floor = game->map_data.floor;
 	img = game->img;
 	x = -1;
 	while (++x < img->width)

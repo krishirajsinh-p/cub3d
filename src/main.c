@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/28 04:13:24 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/28 05:32:52 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ static void	ft_free(t_game_data *game_data)
 		ptr = game_data;
 	else
 	{
-		if (ptr->map_data->raw)
-			ft_free_split(ptr->map_data->raw);
-		if (ptr->map_data->map)
-			ft_free_split(ptr->map_data->map);
+		if (ptr->map_data.raw)
+			ft_free_split(ptr->map_data.raw);
+		if (ptr->map_data.map)
+			ft_free_split(ptr->map_data.map);
 		i = -1;
 		while (++i < 4)
-			if (ptr->map_data->texture[i])
-				free(ptr->map_data->texture[i]);
+			if (ptr->map_data.texture[i])
+				free(ptr->map_data.texture[i]);
 		i = -1;
 		while (++i < 4)
 			if (ptr->walls[i])
@@ -58,8 +58,11 @@ void	ft_error(t_string error_message)
 	exit(EXIT_FAILURE);
 }
 
-void	parser(t_string file, t_map_data *map_data)
+void	parser(t_string file, t_game_data *game_data)
 {
+	t_map_data *map_data;
+
+	map_data = &game_data->map_data;
 	get_raw(file, map_data);
 	check_keys(map_data, (char [6][4]){"NO ", "SO ", "EA ", "WE ", "C ", "F "});
 	get_textures(map_data, (char [4][4]){"NO ", "SO ", "EA ", "WE "});
@@ -67,21 +70,18 @@ void	parser(t_string file, t_map_data *map_data)
 	check_rgb_values(map_data);
 	get_map(map_data, get_start_and_end(map_data), get_start_and_end(map_data));
 	check_openings(map_data);
-	get_player(map_data);
+	get_player(map_data, game_data);
 }
 
 int	main(int argc, char const *argv[])
 {
-	t_map_data	map_data;
 	t_game_data	game_data;
 
-	ft_bzero(&map_data, sizeof(t_map_data));
 	ft_bzero(&game_data, sizeof(t_game_data));
-	game_data.map_data = &map_data;
 	ft_free(&game_data);
 	if (argc != 2)
 		ft_error(ARG);
-	parser((t_string)argv[1], &map_data);
+	parser((t_string)argv[1], &game_data);
 	set_mlx_elements(&game_data);
 	if (mlx_loop_hook(game_data.mlx, check_input, &game_data) == false)
 		ft_error("mlx");
