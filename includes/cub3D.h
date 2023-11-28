@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/25 01:16:57 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/28 03:07:21 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ typedef struct s_map_data
 
 typedef struct s_game_data
 {
-	int32_t			s_width;
-	int32_t			s_height;
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	mlx_texture_t	*walls[4];
@@ -72,6 +70,6 @@ void	get_player(t_map_data *map_data);
 //mlx.c
 void	set_mlx_elements(t_game_data *game_data);
 void	ft_close(void *param);
-void	ft_resize(void *param);
+// int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 
 #endif

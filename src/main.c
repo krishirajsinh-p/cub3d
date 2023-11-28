@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/25 01:16:42 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/26 21:55:17 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ int	main(int argc, char const *argv[])
 		ft_error(ARG);
 	parser((t_string)argv[1], &map_data);
 	set_mlx_elements(&game_data);
-	mlx_resize_hook(game_data.mlx, ft_resize, &game_data);
-	if (mlx_loop_hook(game_data.mlx, ft_close, &game_data) == false)
+	if (mlx_loop_hook(game_data.mlx, ft_close, &game_data) == false)	//make this control hook
 		ft_error("mlx");
+	//raycasting hook
 	mlx_loop(game_data.mlx);
 	ft_free(NULL);
 	return (EXIT_SUCCESS);
