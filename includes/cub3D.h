@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/28 05:33:26 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/29 02:49:01 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 
 # define FOV 0.66
+# define ROT 0.01
+# define MV 0.02
 
 typedef unsigned short	t_ushort;
 
@@ -69,11 +72,15 @@ void	get_player(t_map_data *map_data, t_game_data *game_data);
 
 //mlx.c
 void	set_mlx_elements(t_game_data *game_data);
-void	check_input(void *param);
 int32_t	ft_color(int32_t r, int32_t g, int32_t b);
 
 //engine.c
-void	raycasting(void *param);
 void	paint_floor_ceil(t_game_data *game);
+void	check_input(t_game_data *game_data);
+void	raycasting(void *param);
+
+//movement.c
+void	rotate(t_vector	*vectors, short sign);
+void	move(t_game_data *game_data, t_string *map);
 
 #endif

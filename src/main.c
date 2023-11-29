@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/28 05:32:52 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/29 01:30:38 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ int	main(int argc, char const *argv[])
 		ft_error(ARG);
 	parser((t_string)argv[1], &game_data);
 	set_mlx_elements(&game_data);
-	if (mlx_loop_hook(game_data.mlx, check_input, &game_data) == false)
-		ft_error("mlx");
 	if (mlx_loop_hook(game_data.mlx, raycasting, &game_data) == false)
 		ft_error("mlx");
 	mlx_loop(game_data.mlx);
