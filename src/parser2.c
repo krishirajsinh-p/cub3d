@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:32:38 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/28 05:28:15 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/29 02:41:52 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,28 +134,28 @@ static void	set_vectors(char dir, t_game_data *game_data)
 */
 void	get_player(t_map_data *map_data, t_game_data *game_data)
 {
-	t_ushort	i;
-	t_ushort	j;
+	t_ushort	x;
+	t_ushort	y;
 
-	i = 0;
-	while (++i < map_data->height)
+	y = 0;
+	while (++y < map_data->height)
 	{
-		j = 0;
-		while (map_data->map[i][++j])
+		x = 0;
+		while (map_data->map[y][++x])
 		{
-			if (map_data->map[i][j] == 'N' || map_data->map[i][j] == 'S' || \
-			map_data->map[i][j] == 'E' || map_data->map[i][j] == 'W')
+			if (map_data->map[y][x] == 'N' || map_data->map[y][x] == 'S' || \
+			map_data->map[y][x] == 'E' || map_data->map[y][x] == 'W')
 			{
 				if (game_data->vectors[POS].x != 0 \
 				&& game_data->vectors[POS].y != 0)
 					ft_error(ONE_PLYR);
-				game_data->vectors[POS].x = (double)i + 0.5;
-				game_data->vectors[POS].y = (double)j + 0.5;
-				set_vectors(map_data->map[i][j], game_data);
-				map_data->map[i][j] = '0';
+				game_data->vectors[POS].x = (double)x + 0.5;
+				game_data->vectors[POS].y = (double)y + 0.5;
+				set_vectors(map_data->map[y][x], game_data);
+				map_data->map[y][x] = '0';
 			}
-			else if (map_data->map[i][j] != '0' && map_data->map[i][j] != '1' \
-			&& map_data->map[i][j] != ' ')
+			else if (map_data->map[y][x] != '0' && map_data->map[y][x] != '1' \
+			&& map_data->map[y][j] != ' ')
 				ft_error(INV_CHAR);
 		}
 	}
