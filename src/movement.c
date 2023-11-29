@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 01:04:19 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/29 03:02:32 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/29 03:36:44 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,24 @@ void	move(t_game_data *game_data, t_string *map)
 	t_vector	pos;
 
 	pos = game_data->vectors[POS];
-	w_x = pos.x * MOVESPEED;
-	w_y = pos.y * MOVESPEED;
+	w_x = pos.x * MV;
+	w_y = pos.y * MV;
 	// move2(vectors->player_position[Y] + (fact_x), vectors->player_position[X] - (fact_y), map, vectors);
 	if (mlx_is_key_down(game_data->mlx, MLX_KEY_D))
 		if (map[(int)(pos.y + w_x)][(int)(pos.x - w_y)] != '1')
-			game_data->vectors[POS] = {pos.x - w_y, pos.y + w_x};
+			game_data->vectors[POS] = (t_vector){pos.x - w_y, pos.y + w_x};
 	// move2(vectors->player_position[Y] - (fact_x), vectors->player_position[X] + (fact_y), map, vectors);
 	if (mlx_is_key_down(game_data->mlx, MLX_KEY_A))
 		if (map[(int)(pos.y - w_x)][(int)(pos.x + w_y)] != '1')
-				game_data->vectors[POS] = {pos.x + w_y, pos.y - w_x};
+				game_data->vectors[POS] = (t_vector){pos.x + w_y, pos.y - w_x};
 	// move2(vectors->player_position[Y] + (fact_y), vectors->player_position[X] + (fact_x), map, vectors);
 	if (mlx_is_key_down(game_data->mlx, MLX_KEY_W))
 		if (map[(int)(pos.y + w_y)][(int)(pos.x + w_x)] != '1')
-				game_data->vectors[POS] = {pos.x + w_x, pos.y + w_y};
+				game_data->vectors[POS] = (t_vector){pos.x + w_x, pos.y + w_y};
 	// move2(vectors->player_position[Y] - (fact_y), vectors->player_position[X] - (fact_x), map, vectors);
 	if (mlx_is_key_down(game_data->mlx, MLX_KEY_S))
 		if (map[(int)(pos.y - w_y)][(int)(pos.x - w_x)] != '1')
-				game_data->vectors[POS] = {pos.x - w_x, pos.y - w_y};
+				game_data->vectors[POS] = (t_vector){pos.x - w_x, pos.y - w_y};
 
 }
 

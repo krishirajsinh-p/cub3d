@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:32:38 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/29 02:41:52 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/29 03:36:00 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,7 @@ void	get_player(t_map_data *map_data, t_game_data *game_data)
 				map_data->map[y][x] = '0';
 			}
 			else if (map_data->map[y][x] != '0' && map_data->map[y][x] != '1' \
-			&& map_data->map[y][j] != ' ')
+			&& map_data->map[y][x] != ' ')
 				ft_error(INV_CHAR);
 		}
 	}
