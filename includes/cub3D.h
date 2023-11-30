@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/30 03:22:47 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/30 15:14:03 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,18 +94,14 @@ void	get_map(t_map_data *map_data, short start, short end);
 void	check_openings(t_map_data *map_data);
 void	get_player(t_map_data *map_data, t_game_data *game_data);
 
-//mlx.c
-void	set_mlx_elements(t_game_data *game_data);
-
-//controller.c
-void	move(t_game_data *game_data, t_string *map, t_vector *vec);
-void	rotate(t_vector	*vectors, short sign);
-
 //engine.c
 void	set_ray(t_ray *r, short x, t_vector *vec, mlx_image_t *img);
 void	cast_ray(t_ray *r, t_string *map);
+void	move(t_game_data *game_data, t_string *map, t_vector *vec);
+void	rotate(t_vector	*vectors, short sign);
 
 //render.c
+void	set_mlx_elements(t_game_data *game_data);
 void	paint_floor_ceil(t_game_data *game);
 void	paint_walls(t_ray *r, short x, t_vector *vec, t_game_data *g);
 
