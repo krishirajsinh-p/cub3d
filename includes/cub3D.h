@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/30 03:03:01 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/30 03:22:47 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <math.h>
 
 # define FOV 0.66
-# define ROT 0.01
+# define ROT 0.02
 # define MV 0.02
 
 typedef unsigned short	t_ushort;

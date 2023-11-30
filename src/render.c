@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 01:24:29 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/30 03:00:27 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/30 03:31:52 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	set_struct(t_texture *t, t_ray *r, t_vector *vec, t_game_data *g)
 	else
 		t->wall_x = vec[POS].x + (r->wall_dist * r->dir[X]);
 	t->wall_x -= floor(t->wall_x);
-	t->pxl[X] = t->wall_x * g->walls[r->wall_hit]->width;
+	t->pxl[X] = (int)(t->wall_x * (double)g->walls[r->wall_hit]->width);
 	if ((r->hit_axis == X && r->dir[X] > 0) \
 	|| (r->hit_axis == Y && r->dir[Y] < 0))
 		t->pxl[X] = g->walls[r->wall_hit]->width - t->pxl[X] - 1;

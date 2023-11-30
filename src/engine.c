@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 22:13:50 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/30 03:03:26 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/30 03:25:49 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	set_ray2(t_ray *r, t_vector *vec)
 	{
 		r->step[X] = -1;
 		r->s_dist[X] = (vec[POS].x - r->pos[X]) * r->d_dist[X];
-		r->hit_side[X] = WE;
+		r->hit_side[X] = EA;
 	}
 	else
 	{
 		r->step[X] = 1;
 		r->s_dist[X] = (r->pos[X] + 1.0 - vec[POS].x) * r->d_dist[X];
-		r->hit_side[X] = EA;
+		r->hit_side[X] = WE;
 	}
 	if (r->dir[Y] < 0)
 	{
