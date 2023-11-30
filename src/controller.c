@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
+/*   controller.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 01:04:19 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/29 22:22:20 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/30 00:09:23 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ void	move(t_game_data *game_data, t_string *map, t_vector *vec)
 
 void	rotate(t_vector	*vectors, short sign)
 {
-	double	cosA;
-	double	sinA;
+	double	cos_a;
+	double	sin_a;
 
-	cosA = cos(sign * ROT);
-	sinA = sin(sign * ROT);
-	vectors[DIR].x = (vectors[DIR].x * cosA) - (vectors[DIR].y * sinA);
-	vectors[DIR].y = (vectors[DIR].x * sinA) + (vectors[DIR].y * cosA);
-	vectors[CAM].x = (vectors[CAM].x * cosA) - (vectors[CAM].y * sinA);
-	vectors[CAM].y = (vectors[CAM].x * sinA) + (vectors[CAM].y * cosA);
+	cos_a = cos(sign * ROT);
+	sin_a = sin(sign * ROT);
+	vectors[DIR].x = (vectors[DIR].x * cos_a) - (vectors[DIR].y * sin_a);
+	vectors[DIR].y = (vectors[DIR].x * sin_a) + (vectors[DIR].y * cos_a);
+	vectors[CAM].x = (vectors[CAM].x * cos_a) - (vectors[CAM].y * sin_a);
+	vectors[CAM].y = (vectors[CAM].x * sin_a) + (vectors[CAM].y * cos_a);
 }

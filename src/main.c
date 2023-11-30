@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/29 01:30:38 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/30 03:04:33 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	ft_error(t_string error_message)
 	exit(EXIT_FAILURE);
 }
 
-void	parser(t_string file, t_game_data *game_data)
+static void	parser(t_string file, t_game_data *game_data)
 {
-	t_map_data *map_data;
+	t_map_data	*map_data;
 
 	map_data = &game_data->map_data;
 	get_raw(file, map_data);
@@ -73,6 +73,30 @@ void	parser(t_string file, t_game_data *game_data)
 	get_player(map_data, game_data);
 }
 
+static void	engine(void *param)
+{
+	t_game_data	*game_data;
+	short		x;
+	t_ray		ray;
+
+	game_data = (t_game_data *)param;
+	paint_floor_ceil(game_data);
+	x = -1;
+	while (++x < (short)game_data->img->width)
+	{
+		set_ray(&ray, x, game_data->vectors, game_data->img);
+		cast_ray(&ray, game_data->map_data.map);
+		paint_walls(&ray, x, game_data->vectors, game_data);
+	}
+	if (mlx_is_key_down(game_data->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(game_data->mlx);
+	if (mlx_is_key_down(game_data->mlx, MLX_KEY_RIGHT))
+		rotate(game_data->vectors, 1);
+	if (mlx_is_key_down(game_data->mlx, MLX_KEY_LEFT))
+		rotate(game_data->vectors, -1);
+	move(game_data, game_data->map_data.map, game_data->vectors);
+}
+
 int	main(int argc, char const *argv[])
 {
 	t_game_data	game_data;
@@ -83,7 +107,7 @@ int	main(int argc, char const *argv[])
 		ft_error(ARG);
 	parser((t_string)argv[1], &game_data);
 	set_mlx_elements(&game_data);
-	if (mlx_loop_hook(game_data.mlx, raycasting, &game_data) == false)
+	if (mlx_loop_hook(game_data.mlx, engine, &game_data) == false)
 		ft_error("mlx");
 	mlx_loop(game_data.mlx);
 	ft_free(NULL);

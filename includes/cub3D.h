@@ -6,7 +6,7 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 13:12:51 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/29 02:49:01 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/30 03:03:01 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,40 @@ typedef struct s_map_data
 
 typedef struct s_game_data
 {
-	t_vector	vectors[3];
+	t_vector		vectors[3];
 	mlx_t			*mlx;
 	mlx_image_t		*img;
 	mlx_texture_t	*walls[4];
 	t_map_data		map_data;
 }	t_game_data;
 
+typedef struct s_ray
+{
+	double	cam_x;
+	double	dir[2];
+	double	d_dist[2];
+	int		pos[2];
+	double	s_dist[2];
+	int		step[2];
+	int		hit_side[2];
+	int		hit_axis;
+	double	wall_dist;
+	int		wall_hit;
+}	t_ray;
+
+typedef struct s_texture
+{
+	int		line_height;
+	int		start;
+	int		end;
+	double	wall_x;
+	double	step;
+	int		pxl[2];
+	double	pos;
+}	t_texture;
+
 //main.c
 void	ft_error(t_string error_message);
-void	parser(t_string file, t_game_data *game_data);
 
 //parser.c
 void	get_raw(t_string file, t_map_data *map_data);
@@ -72,15 +96,17 @@ void	get_player(t_map_data *map_data, t_game_data *game_data);
 
 //mlx.c
 void	set_mlx_elements(t_game_data *game_data);
-int32_t	ft_color(int32_t r, int32_t g, int32_t b);
+
+//controller.c
+void	move(t_game_data *game_data, t_string *map, t_vector *vec);
+void	rotate(t_vector	*vectors, short sign);
 
 //engine.c
-void	paint_floor_ceil(t_game_data *game);
-void	check_input(t_game_data *game_data);
-void	raycasting(void *param);
+void	set_ray(t_ray *r, short x, t_vector *vec, mlx_image_t *img);
+void	cast_ray(t_ray *r, t_string *map);
 
-//movement.c
-void	rotate(t_vector	*vectors, short sign);
-void	move(t_game_data *game_data, t_string *map);
+//render.c
+void	paint_floor_ceil(t_game_data *game);
+void	paint_walls(t_ray *r, short x, t_vector *vec, t_game_data *g);
 
 #endif

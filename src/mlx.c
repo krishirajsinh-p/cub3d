@@ -6,16 +6,11 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 03:31:05 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/29 01:04:40 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/29 21:47:07 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-int32_t	ft_color(int32_t r, int32_t g, int32_t b)
-{
-	return (r << 24 | g << 16 | b << 8 | 0x000000FF);
-}
 
 void	set_mlx_elements(t_game_data *game_data)
 {
