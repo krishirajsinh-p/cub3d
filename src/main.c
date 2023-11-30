@@ -6,19 +6,12 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 14:25:56 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/30 03:04:33 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/30 15:16:44 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-/*
-	when called for the first time with struct address
-	static ptr will point at s_game_data struct. Rest
-	of the times when function is called with any arg
-	it will check if pointer is NULL(to avoid free error)
-	if not then it frees the memory
-*/
 static void	ft_free(t_game_data *game_data)
 {
 	static t_game_data	*ptr;
@@ -45,9 +38,6 @@ static void	ft_free(t_game_data *game_data)
 	}
 }
 
-/*
-	free up the memory, put message on stderr and exit with failure
-*/
 void	ft_error(t_string error_message)
 {
 	if (ft_strncmp("mlx", error_message, 3) == 0)
@@ -113,17 +103,3 @@ int	main(int argc, char const *argv[])
 	ft_free(NULL);
 	return (EXIT_SUCCESS);
 }
-
-// for (int i = 0; i < 4; i++)
-// 	printf("%d\t\t%s\n",i+1,map_data.texture[i]);
-// printf("\nC\t\t");
-// for (int i = 0; i < 3; i++)
-// 	printf("%d,",map_data.ceil[i]);
-// printf("\nF\t\t");
-// for (int i = 0; i < 3; i++)
-// 	printf("%d,",map_data.floor[i]);
-// printf("\n\n");
-// for (int i = 0; i < map_data.height; i++)
-// 	printf("%i\t\t%s\n", i, map_data.map[i]);
-// printf("\nPlayer's (X,Y)\t(%f, %f) dir %c\n", map_data.player.pos[X],\
-//  map_data.player.pos[Y], map_data.player.dir);

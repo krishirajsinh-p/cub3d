@@ -6,15 +6,12 @@
 /*   By: kpuwar <kpuwar@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 20:32:38 by kpuwar            #+#    #+#             */
-/*   Updated: 2023/11/29 03:36:00 by kpuwar           ###   ########.fr       */
+/*   Updated: 2023/11/30 15:15:49 by kpuwar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-/*
-	gives the index for the start and end line of the map.
-*/
 short	get_start_and_end(t_map_data *map_data)
 {
 	static t_ushort	i;
@@ -38,9 +35,6 @@ short	get_start_and_end(t_map_data *map_data)
 	return (-1);
 }
 
-/*
-	check for the openings in the map, map should be closed.
-*/
 void	check_openings(t_map_data *map_data)
 {
 	short	i[2];
@@ -70,10 +64,6 @@ void	check_openings(t_map_data *map_data)
 	}
 }
 
-/*
-	adjust map from the raw map data and makes regular 2d array for map.
-	also calculates map's height and width.
-*/
 void	get_map(t_map_data *map_data, short start, short end)
 {
 	short	i;
@@ -102,7 +92,6 @@ void	get_map(t_map_data *map_data, short start, short end)
 	}
 }
 
-// sets the direction vector and camera vector
 static void	set_vectors(char dir, t_game_data *game_data)
 {
 	if (dir == 'N')
@@ -127,11 +116,6 @@ static void	set_vectors(char dir, t_game_data *game_data)
 	}
 }
 
-/*
-	sets the player data, it's position and it's direction.
-	also checks if there is exactly on player in the map.
-	it also checks if there isn't any useless char in the map.
-*/
 void	get_player(t_map_data *map_data, t_game_data *game_data)
 {
 	t_ushort	x;
@@ -160,8 +144,3 @@ void	get_player(t_map_data *map_data, t_game_data *game_data)
 		}
 	}
 }
-
-	// for (size_t i = 0; map_data->map[i]; i++)
-	// 	printf("%lu\t|\t[%s]\n", i + 1, map_data->map[i]);
-	// for (size_t i = 0; i < 3; i++)
-	// 	printf("(%f, %f)\n", map_data->vectors[i].x, map_data->vectors[i].y);
