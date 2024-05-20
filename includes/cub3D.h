@@ -22,8 +22,8 @@
 # include <math.h>
 
 # define FOV 0.66
-# define ROT 0.02
-# define MV 0.02
+# define ROT 0.1
+# define MV 0.1
 
 typedef unsigned short	t_ushort;
 

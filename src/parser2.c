@@ -64,7 +64,7 @@ void	check_openings(t_map_data *map_data)
 	}
 }
 
-void	get_map(t_map_data *map_data, short start, short end)
+void	get_map(t_map_data *map_data, short end, short start)
 {
 	short	i;
 
