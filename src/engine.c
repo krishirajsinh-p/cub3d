@@ -110,13 +110,14 @@ void	move(t_game_data *game_data, t_string *map, t_vector *vec)
 
 void	rotate(t_vector	*vectors, short sign)
 {
-	double	cos_a;
-	double	sin_a;
+	double		cos_a;
+	double		sin_a;
+	t_vector	old_vecs[3] = {vectors[POS], vectors[DIR], vectors[CAM]};
 
 	cos_a = cos(sign * ROT);
 	sin_a = sin(sign * ROT);
 	vectors[DIR].x = (vectors[DIR].x * cos_a) - (vectors[DIR].y * sin_a);
-	vectors[DIR].y = (vectors[DIR].x * sin_a) + (vectors[DIR].y * cos_a);
+	vectors[DIR].y = (old_vecs[DIR].x * sin_a) + (vectors[DIR].y * cos_a);
 	vectors[CAM].x = (vectors[CAM].x * cos_a) - (vectors[CAM].y * sin_a);
-	vectors[CAM].y = (vectors[CAM].x * sin_a) + (vectors[CAM].y * cos_a);
+	vectors[CAM].y = (old_vecs[CAM].x * sin_a) + (vectors[CAM].y * cos_a);
 }
